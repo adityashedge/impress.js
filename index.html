@@ -119,56 +119,104 @@
         <h1> <b>Introduction to MongoDB </b> </h1>
         <hr>
         <br>
-        MongoDB is a document-oriented DBMS developed and supported by 10gen.
+        <li>MongoDB is a document-oriented DBMS developed and supported by 10gen.</li>
         <br>  
-        MongoDB is implemented in C++.
+        <li>MongoDB is implemented in C++.</li>
         <br>  
-        MongoDB uses BSON which could be thought of as a binary representation of JSON (JavaScript Object Notation) documents.
+        <li>MongoDB uses BSON which could be thought of as a binary representation of JSON (JavaScript Object Notation) documents.</li>
         <br>  
-        BSON is a binary format in which zero or more key/value pairs are stored as a single entity.
+        <li>BSON is a binary format in which zero or more key/value pairs are stored as a single entity.</li>
         <br>  
-        A MongoDB database stores its data in collections.
+        <li>MongoDB uses NOSQL.</li>
         <br>  
-            <li style= "margin-left: 5%;">Collection -> RDBMS Table</li>
-            <li style= "margin-left: 5%;">Document-> Row in a Table</li>
-        MongoDB uses NOSQL.
-        <br>  
-        MongoDB uses dynamic schemas.
+        <li>MongoDB uses dynamic schemas.</li>
     </div>
 
     <div id="step2" class="step slide" data-x="1000" data-y="-1500">
-        <h1> <b>Querying </b> </h1>
+        <h1> <b>Database </b> </h1>
         <hr>
+        <br>  
+        <li>A MongoDB database stores its data in collections.</li>
+        <br>  
+            <li style= "margin-left: 5%;">Collection -> RDBMS Table</li>
+        <br>  
+            <li style= "margin-left: 5%;">Document-> Row in a Table</li>
+        <br>  
+            <li style= "margin-left: 5%;">Value-> column in a Table</li>
+
+
     </div>    
 
     <div id="step3" class="step slide" data-x="2000" data-y="-1500">
         <h1> <b>Querying </b> </h1>
         <hr>
+        <br>
+        <li>find()</li>
+        <br>
+        <li>db.collection.find(query, projection)</li>
+        <br>
+        <li>The cursor returns the first batch of 20 matching documents by default.</li>
+        <br>
+        <li>Iterate with 'it' command</li>
     </div>    
 
-    <div id="step4" class="step slide" data-x="1000" data-y="-1500">
-        <h1> <b>Querying </b> </h1>
+    <div id="step4" class="step slide" data-x="3000" data-y="-1500">
+        <h1> <b>Aggregation</b> </h1>
         <hr>
+        <br>
+        <li>map-reduce.</li> 
+        <br>
+        <li>aggregation framework.</li>
+        <br>
+        <li>Methods and commands.</li> 
+        <li style= "margin-left: 5%;">count</li>
+        <li style= "margin-left: 5%;">distinct</li>
+        <li style= "margin-left: 5%;">group</li>
+        <br>
     </div>    
 
-    <div id="step5" class="step slide" data-x="2000" data-y="-1500">
-        <h1> <b>Querying </b> </h1>
+    <div id="step5" class="step slide" data-x="4000" data-y="-1500">
+        <h1> <b>Aggregation Framework</b> </h1>
         <hr>
+        <br>
+        <li>A framework to provide “group-by” and aggregate functionality without the overhead of map-reduce.</li> 
+        <br>
+        <li>No JavaScript required</li>
+        <br>
+        <li>C++ implementation so higher performance than JavaScript</li>
+        <br>
+        <li>Expression evaluation</li>
+        <br>
+        <li>Return computed values</li>
+        <br>
+        <li>Framework so we can add new operations easily.</li>
     </div>    
 
-    <div id="step6" class="step slide" data-x="3000" data-y="-1500">
-        <h1> <b>Querying </b> </h1>
+    <div id="step6" class="step slide" data-x="5000" data-y="-1500">
+        <h1> <b>Framework Components</b> </h1>
         <hr>
     </div>    
     
-    <div id="step7" class="step slide" data-x="1000" data-y="-1500">
-        <h1> <b>Querying </b> </h1>
+    <div id="step7" class="step slide" data-x="6000" data-y="-1500">
+        <h1> <b>Pipeline </b> </h1>
         <hr>
+        <br>
+        <li>Documents from a collection pass through an aggregation pipeline.</li>
+        <br>
+        <li>The MongoDB aggregation pipeline streams MongoDB documents from one pipeline operator to the next to process the documents.</li>
+        <br>
+        <li>Pipeline operators can be repeated in the pipe.</li>
     </div>    
 
-    <div id="step8" class="step slide" data-x="2000" data-y="-1500">
-        <h1> <b>Querying </b> </h1>
+    <div id="step8" class="step slide" data-x="7000" data-y="-1500">
+        <h1> <b>Limitations </b> </h1>
         <hr>
+        <br>
+        <li>Pipeline cannot operate on values of the following types: Symbol, MinKey, MaxKey, DBRef, Code, CodeWScope.</li>
+        <br>
+        <li>Output from the pipeline can only contain 16 megabytes. If result set exceeds this limit, then aggregate command produces an error.</li>
+        <br>
+        <li>If any single aggregation operation consumes more than 10 percent of system RAM the operation will produce an error.</li>
     </div>    
 
 </div>
