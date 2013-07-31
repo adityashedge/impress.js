@@ -107,7 +107,7 @@
         <br>
         <br>
         <br>
-        <p><b><span style= "margin-left: 125px;">Aggregation Framework in Mongodb</span></b></p>
+        <p><b><span style= "font-size: 45px;">Aggregation Framework in Mongodb</span></b></p>
         <br>
         <br>
         <br>
@@ -273,21 +273,6 @@
     </div>
     
     <div id="step12" class="step slide" data-x="11000" data-y="-1500">
-        <h1> <b> geoNear </b> </h1>
-        <hr>
-        <br>
-        <li>Introduced in MongoDB version 2.4</li>
-        <br>
-        <li>$geoNear returns documents in order of nearest to farthest from a specified point and pass the documents through the aggregation pipeline.</li>
-        <br>
-        <li>You can only use $geoNear as the first stage of a pipeline.</li>
-        <br>
-        <li>You must include the distanceField option. The distanceField option specifies the field that will contain the calculated distance.</li>
-        <br>
-        <li>The collection must have a geospatial index.</li>
-    </div>
-
-    <div id="step13" class="step slide" data-x="12000" data-y="-1500">
         <h1> <b> Expression</b> </h1>
         <hr>
         <br>
@@ -306,7 +291,7 @@
         <li>Conditional Expressions</li>
     </div>
 
-    <div id="step14" class="step slide" data-x="13000" data-y="-1500">
+    <div id="step13" class="step slide" data-x="12000" data-y="-1500">
         <h1> <b>Optimizing Aggregation Performance</b> </h1>
         <hr>
         <br>
@@ -343,7 +328,7 @@
         <li>Optimizer adds the adjacent values: {$limit: 15}, {$skip: 7}</li>
     </div>
 
-    <div id="step15" class="step slide" data-x="14000" data-y="-1500">
+    <div id="step14" class="step slide" data-x="13000" data-y="-1500">
         <h1> <b>MapReduce Performance in MongoDB</b> </h1>
         <hr>
         <br>
@@ -355,7 +340,7 @@
         <li>The SpiderMonkey JavaScript engine has been replaced by the V8 JavaScript engine in version 2.4, and there is no longer a global JavaScript lock, which means that multiple Map/Reduce threads can run concurrently.</li>
     </div>
 
-    <div id="step16" class="step slide" data-x="15000" data-y="-1500">
+    <div id="step15" class="step slide" data-x="14000" data-y="-1500">
         <h1> <b>MapReduce vs Aggregation Framework</b> </h1>
         <hr>
         <br>
@@ -369,12 +354,12 @@
         <li>If you're saving the output in a collection, then result set must then be converted from JSON back to BSON.</li>
     </div>
 
-    <div id="step17" class="step slide" data-x="16000" data-y="-1500">
+    <div id="step16" class="step slide" data-x="15000" data-y="-1500">
         <h1> <b>Map Reduce Example</b> </h1>
         <hr>
         <br>
         > var mapFn = function() {
-        <br>...                        emit(this.state, this.city);
+        <br>...                        emit(this.state, this.pop);
         <br>...                    };
 
         <br>
@@ -391,32 +376,47 @@
         <br>
     </div>
 
-    <div id="step18" class="step slide" data-x="17000" data-y="-1500">
-        <h1> <b>MapReduce Result</b> </h1>
-        <hr>
-        <br>{
-        <br>"result" : "mrresult",
-        <br>"timeMillis" : 764,
-        <br>"counts" : {
-        <br>    "input" : 29467,
-        <br>    "emit" : 29467,
-        <br>    "reduce" : 374,
-        <br>    "output" : 51
-        <br>},
-        <br>"ok" : 1,
-        <br>}
-
-    </div>
-
-    <div id="step19" class="step slide" data-x="18000" data-y="-1500">
+    <div id="step17" class="step slide" data-x="16000" data-y="-1500">
         <h1> <b>MapReduce Result</b> </h1>
         <hr>
         <br>
-        2.0.0p195 :084 > Benchmark.realtime{coll.aggregate([{"$group"=> {"_id"=> "$state", "total"=> {"$sum"=> "$pop"}}}])}
-        <br>=> 0.048979808 
-
+        <br>{
+        <br>"result" : "mrresult",
+        <br>"timeMillis" : 1111,
+        <br>"counts" : {
+        <br>         "input" : 29467,
+        <br>         "emit" : 29467,
+        <br>         "reduce" : 345,
+        <br>         "output" : 51
+        <br>},
+        <br>"ok" : 1,
+        <br>}
     </div>
 
+    <div id="step18" class="step slide" data-x="17000" data-y="-1500">
+        <h1> <b>Benchmark Result</b> </h1>
+        <hr>
+        <br> 
+        <strong>MAPREDUCE</strong>
+        <br>2.0.0-p195 :014 > mapFn = "function() {emit(this.state, this.pop);};"
+        <br> => "function() {emit(this.state, this.pop);};" 
+        <br> 2.0.0-p195 :015 > 
+        <br> 2.0.0-p195 :016 >   reduceFn = "function(key, values) {return Array.sum(values);};"
+        <br> => "function(key, values) {return Array.sum(values);};" 
+        <br> 2.0.0-p195 :017 > 
+        <br> 2.0.0-p195 :018 >   Benchmark.realtime{coll.map_reduce(mapFn,reduceFn,{out: "mrresult" })}
+        <br> => 0.645419389 
+    </div>
+
+    <div id="step19" class="step slide" data-x="18000" data-y="-1500">
+        <h1> <b> Limitations of Aggregation Framework</b> </h1>
+        <hr>
+        <br>
+        <br><strong>AGGREGATION FRAMEWORK</strong>
+        2.0.0p195 :084 > Benchmark.realtime{coll.aggregate([{"$group"=> {"_id"=> "$state", "total"=> {"$sum"=> "$pop"}}}])}
+        <br>=> 0.055333919 
+    </div>
+        
     <div id="step20" class="step slide" data-x="19000" data-y="-1500">
         <h1> <b> Limitations of Aggregation Framework</b> </h1>
         <hr>
@@ -429,6 +429,21 @@
     </div>    
 
     <div id="step21" class="step slide" data-x="20000" data-y="-1500">
+        <h1> <b> geoNear </b> </h1>
+        <hr>
+        <br>
+        <li>Introduced in MongoDB version 2.4</li>
+        <br>
+        <li>$geoNear returns documents in order of nearest to farthest from a specified point and pass the documents through the aggregation pipeline.</li>
+        <br>
+        <li>You can only use $geoNear as the first stage of a pipeline.</li>
+        <br>
+        <li>You must include the distanceField option. The distanceField option specifies the field that will contain the calculated distance.</li>
+        <br>
+        <li>The collection must have a geospatial index.</li>
+    </div>
+
+    <div id="step22" class="step slide" data-x="21000" data-y="-1500">
         <h1> <b> Conclusion</b> </h1>
         <hr>
         <br>
@@ -439,7 +454,7 @@
         <li>Both have their areas of applications so you should choose which suits your needs better.</li>
     </div>
 
-    <div id="step22" class="step slide" data-x="21000" data-y="-1500">
+    <div id="step23" class="step slide" data-x="22000" data-y="-1500">
         <br>
         <br>
         <br>
