@@ -12,95 +12,20 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
-    <!--
-        
-        Impress.js doesn't depend on any external stylesheet. Script adds all styles it needs for
-        presentation to work.
-        
-        This style below contains styles only for demo presentation. Browse it to see how impress.js
-        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
-        you to use them directly in your presentation.
-        
-        Be creative, build your own. We don't really want all impress.js presentations to look the same,
-        do we?
-        
-        When creating your own presentation get rid of this file. Start from scratch, it's fun!
-        
-    -->
     <link href="css/impress-demo.css" rel="stylesheet" />
     
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
 
-<!--
-    
-    Body element is used by impress.js to set some useful class names, that will allow you to detect
-    the support and state of the presentation in CSS or other scripts.
-    
-    First very useful class name is `impress-not-supported`. This class means, that browser doesn't
-    support features required by impress.js, so you should apply some fallback styles in your CSS.
-    It's not necessary to add it manually on this element. If the script detects that browser is not
-    good enough it will add this class, but keeping it in HTML means that users without JavaScript
-    will also get fallback styles.
-    
-    When impress.js script detects that browser supports all required features, this class name will
-    be removed.
-    
-    The class name on body element also depends on currently active presentation step. More details about
-    it can be found later, when `hint` element is being described.
-    
--->
 <body class="impress-not-supported">
 
-<!--
-    For example this fallback message is only visible when there is `impress-not-supported` class on body.
--->
 <div class="fallback-message">
     <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
 
-<!--
-    
-    Now that's the core element used by impress.js.
-    
-    That's the wrapper for your presentation steps. In this element all the impress.js magic happens.
-    It doesn't have to be a `<div>`. Only `id` is important here as that's how the script find it.
-    
-    You probably won't need it now, but there are some configuration options that can be set on this element.
-    
-    To change the duration of the transition between slides use `data-transition-duration="2000"` giving it
-    a number of ms. It defaults to 1000 (1s).
-    
-    You can also control the perspective with `data-perspective="500"` giving it a number of pixels.
-    It defaults to 1000. You can set it to 0 if you don't want any 3D effects.
-    If you are willing to change this value make sure you understand how CSS perspective works:
-    https://developer.mozilla.org/en/CSS/perspective
-    
-    But as I said, you won't need it for now, so don't worry - there are some simple but interesing things
-    right around the corner of this tag ;)
-    
--->
 <div id="impress">
-
-    <!--
-        
-        Here is where interesting thing start to happen.
-        
-        Each step of the presentation should be an element inside the `#impress` with a class name
-        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
-        the 'camera' shows them on each step of the presentation.
-        
-        Positioning information is passed through data attributes.
-        
-        In the example below we only specify x and y position of the step element with `data-x="-1000"`
-        and `data-y="-1500` attributes. This means that **the center** of the element (yes, the center)
-        will be positioned in point x = -1000px and y = -1500px of the presentation 'canvas'.
-        
-        It will not be rotated or scaled.
-        
-    -->
     <div id="step0" class="step slide" data-x="-1000" data-y="-1500">
         <br>
         <br>
@@ -183,7 +108,7 @@
         <br>
         <li>No JavaScript required</li>
         <br>
-        <li>C++ implementation so higher performance than JavaScript</li>
+        <li>C++ implementation so better performance than JavaScript</li>
         <br>
         <li>Expression evaluation</li>
         <br>
@@ -269,6 +194,8 @@
         <br>
         <li>$unwind returns one document for every member of the unwound array within every source document.</li>
         <br>
+        <li>db.users.insert({roles: ['manager', 'engineer', 'worker']})</li>
+        <br>
         <li>db.users.aggregate({$unwind: "$roles"},{$group: {_id: "$roles", sum: {$sum: 1}}})</li>
     </div>
     
@@ -312,17 +239,15 @@
         <li>The $limit value has increased to the sum of the initial value and the $skip value.</li>
         <br>
         <li>
-            { $limit: 100 },
             { $skip: 5 },
             { $limit: 10},
             { $skip: 2 }
         </li>
         <br>
         <li>
-        { $limit: 100 },
-        { $limit: 15},
-        { $skip: 5 },
-        { $skip: 2 }
+            { $limit: 15},
+            { $skip: 5 },
+            { $skip: 2 }
         </li>
         <br>
         <li>Optimizer adds the adjacent values: {$limit: 15}, {$skip: 7}</li>
@@ -394,7 +319,7 @@
     </div>
 
     <div id="step18" class="step slide" data-x="17000" data-y="-1500">
-        <h1> <b>Benchmark Result</b> </h1>
+        <h1> <b>Benchmark Results</b> </h1>
         <hr>
         <br> 
         <strong>MAPREDUCE</strong>
@@ -409,7 +334,7 @@
     </div>
 
     <div id="step19" class="step slide" data-x="18000" data-y="-1500">
-        <h1> <b> Limitations of Aggregation Framework</b> </h1>
+        <h1> <b>Benchmark Results </b> </h1>
         <hr>
         <br>
         <br><strong>AGGREGATION FRAMEWORK</strong>
@@ -418,6 +343,45 @@
     </div>
         
     <div id="step20" class="step slide" data-x="19000" data-y="-1500">
+        <h1> <b>Benchmark Comparison</b> </h1>
+        <hr>
+        Performing counting of elements belonging to a group to check performance.
+        In this case counting number of cities in a state.
+        <br><strong>MAPREDUCE:</strong>
+        <br>2.0.0p195 :014 >   mapFn = "function() {emit(this.state, 1);};"
+        <br> => "function() {emit(this.state, 1);};" 
+        <br>2.0.0p195 :016 >   reduceFn = "function(key, values) {return Array.sum(values);};"
+        <br>=> "function(key, values) {return Array.sum(values);};" 
+        <br>2.0.0p195 :018 >   Benchmark.realtime{collect.map_reduce(mapFn,reduceFn,{out: "mrresult" })}
+        <br><strong>AGGREGATION FRAMEWORK: </strong>
+        <br>2.0.0p195 :006 > Benchmark.realtime{collect.aggregate([{"$group"=> {"_id"=> "$state", "total"=> {"$sum"=> 1}}}])}
+
+    </div>
+
+    <div id="step21" class="step slide" data-x="20000" data-y="-1500">
+        <h1> <b>Benchmark Comparison</b> </h1>
+        <hr>
+        <br>After inserting 100k records
+        <br>
+        <br><strong>MAPREDUCE: </strong>
+        <br>=> 2.791563706
+        <br>=> 2.990042183
+
+        <br><strong>AGGREGATION FRAMEWORK: </strong>
+        <br>=> 0.202436786
+        <br>=> 0.246570135 (cache cleaned)
+        <br>
+        
+        <br>After inserting 500k records
+        <br><strong>MAPREDUCE: </strong>
+        <br>=> 13.038614068
+
+        <br><strong>AGGREGATION FRAMEWORK: </strong>
+        <br>=> 0.671006352 
+        <br>=> 0.922359733 (cache cleaned)
+    </div>
+        
+    <div id="step22" class="step slide" data-x="21000" data-y="-1500">
         <h1> <b> Limitations of Aggregation Framework</b> </h1>
         <hr>
         <br>
@@ -428,8 +392,8 @@
         <li>If any single aggregation operation consumes more than 10 percent of system RAM the operation will produce an error.</li>
     </div>    
 
-    <div id="step21" class="step slide" data-x="20000" data-y="-1500">
-        <h1> <b> geoNear </b> </h1>
+    <div id="step23" class="step slide" data-x="22000" data-y="-1500">
+        <h1> <b>What's new in version 2.4: $geoNear </b> </h1>
         <hr>
         <br>
         <li>Introduced in MongoDB version 2.4</li>
@@ -443,7 +407,7 @@
         <li>The collection must have a geospatial index.</li>
     </div>
 
-    <div id="step22" class="step slide" data-x="21000" data-y="-1500">
+    <div id="step24" class="step slide" data-x="23000" data-y="-1500">
         <h1> <b> Conclusion</b> </h1>
         <hr>
         <br>
@@ -454,7 +418,7 @@
         <li>Both have their areas of applications so you should choose which suits your needs better.</li>
     </div>
 
-    <div id="step23" class="step slide" data-x="22000" data-y="-1500">
+    <div id="step25" class="step slide" data-x="24000" data-y="-1500">
         <br>
         <br>
         <br>
@@ -473,94 +437,9 @@ if ("ontouchstart" in document.documentElement) {
 }
 </script>
 
-<!--
-    
-    Last, but not least.
-    
-    To make all described above really work, you need to include impress.js in the page.
-    I strongly encourage to minify it first.
-    
-    In here I just include full source of the script to make it more readable.
-    
-    You also need to call a `impress().init()` function to initialize impress.js presentation.
-    And you should do it in the end of your document. Not only because it's a good practice, but also
-    because it should be done when the whole document is ready.
-    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
-    
--->
 <script src="js/impress.js"></script>
 <script>impress().init();</script>
 
-<!--
-    
-    The `impress()` function also gives you access to the API that controls the presentation.
-    
-    Just store the result of the call:
-    
-        var api = impress();
-    
-    and you will get three functions you can call:
-    
-        `api.init()` - initializes the presentation,
-        `api.next()` - moves to next step of the presentation,
-        `api.prev()` - moves to previous step of the presentation,
-        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
-                id or the DOM element; second parameter can be used to define duration of the transition in ms,
-                but it's optional - if not provided default transition duration for the presentation will be used.
-    
-    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
-    Don't worry, it wont initialize the presentation again.
-    
-    For some example uses of this API check the last part of the source of impress.js where the API
-    is used in event handlers.
-    
--->
-
 </body>
 </html>
-
-<!--
-    
-    Now you know more or less everything you need to build your first impress.js presentation, but before
-    you start...
-    
-    Oh, you've already cloned the code from GitHub?
-    
-    You have it open in text editor?
-    
-    Stop right there!
-    
-    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
-    first needs to grow in your mind.
-    
-    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
-    
-    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
-    to present. It will get you closer and closer to the layout you'll build later with impress.js.
-    
-    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
-    it earlier, because you'll only waste your time fighting with positioning of useless points.
-    
-    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
-    creating awesome and engaging presentations.
-    
-    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
-    
--->
-
-<!--
-    
-    Are you still reading this?
-    
-    For real?
-    
-    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
-    to congratulate you personally :)
-    
-    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
-    or anything you like to drink. And raise a glass for me ;)
-    
-    Cheers!
-    
--->
 
